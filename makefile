@@ -28,24 +28,7 @@ GCC_ADD_OPTIONS = -DTESTBENCH
 
 
 
-# ----------------------------------------------------------------------------
-# Regel fuer das Vorbereiten der Kompilierung
-compile-setup :
-    # main-Funktion der Loesung wird umbenannt 
-	@for file in $(BUILD_DIR)/*.c; 
-	do \
-		sed 's/\(int main *(\)/int _main\(/g' "$$file" > $(TMP_MAIN); \
-		mv $(TMP_MAIN) "$$file"; \
-	done
-	@echo    
 
-    # Testprogramme ins build-Verzeichnis kopieren
-	@cp $(TESTS_DIR)/* $(BUILD_DIR)/;
-	@cp $(SRC_GLOBAL_DIR)/$(LOGGING).* $(BUILD_DIR)/;
-
-    # wait_and_exit im build-Verzeichnis erzeugen
-	@gcc $(SRC_GLOBAL_DIR)/$(CTRL).c -o $(BUILD_DIR)/$(CTRL).o \
-	                                     -DFUNCTION_TEST;
 
 
 # ----------------------------------------------------------------------------
