@@ -32,7 +32,8 @@ GCC_ADD_OPTIONS = -DTESTBENCH
 # Regel fuer das Vorbereiten der Kompilierung
 compile-setup :
     # main-Funktion der Loesung wird umbenannt 
-	@for file in $(BUILD_DIR)/*.c; do \
+	@for file in $(BUILD_DIR)/*.c; 
+	do \
 		sed 's/\(int main *(\)/int _main\(/g' "$$file" > $(TMP_MAIN); \
 		mv $(TMP_MAIN) "$$file"; \
 	done
